@@ -41,7 +41,7 @@ function process(data) {
 	console.log(serials);
 
 	// ages
-	var age_regex = /[0-9]*[.0-9]+ years? old/g;
+	var age_regex = /[0-9]*[.0-9]+ [yY]ears? old/g;
 	var ages = data.match(age_regex);
 	data = data.replace(age_regex, '');
 	draw(solution, ages, 'Found ages: ')

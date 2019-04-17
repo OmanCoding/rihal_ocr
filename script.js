@@ -71,6 +71,7 @@ function process(data) {
 	})
 	data = data.replace(city_regex, '');
 	console.log(cities);
+	solution.append('<div style="clear:both;"> </div>')
 }
 
 function draw(parelem, data, title) {

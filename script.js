@@ -19,7 +19,7 @@ function process(data) {
 	$('#solve').append(solution);
 
 	var date_regex = /\d{1,2}[\/\\-]\d{1,2}[\/\\-]\d{2,4}/g;
-	var dates = data.match(date_regex);
+	var dates = data.match(date_regex) || [];
 	// convert dates using array map
 	// usage of moment.js here is to introduce moment.js, however
 	// simpler array swap would have fulfilled requirements.
@@ -32,7 +32,7 @@ function process(data) {
 
 	// serials
 	var serials_regex = /\d{3,}-\d{3,}-\d{3,}-\d{3,}/g;
-	var serials = data.match(serials_regex);
+	var serials = data.match(serials_regex) || [];
 	serials = serials.map(function(val) {
 		return '('+val.split('-').join(', ')+')';
 	})
@@ -42,14 +42,14 @@ function process(data) {
 
 	// ages
 	var age_regex = /[0-9]*[.0-9]+ [yY]ears? old/g;
-	var ages = data.match(age_regex);
+	var ages = data.match(age_regex) || [];
 	data = data.replace(age_regex, '');
 	draw(solution, ages, 'Found ages: ')
 	console.log(ages);
 
 	// cat names
 	var cat_regex = /cat'?s? name is [A-Za-z]*/g;
-	var cats = data.match(cat_regex);
+	var cats = data.match(cat_regex) || [];
 	data = data.replace(cat_regex, '');
 	draw(solution, cats, 'Found cat names: ')
 	console.log(cats);
@@ -58,7 +58,7 @@ function process(data) {
 	// we can look for non capital words also;
 	var city_regex = /[A-Z][a-z]*/g;
 
-	var cities = data.match(city_regex);
+	var cities = data.match(city_regex) || [];
 	var cities_api = [];
 	var container = draw(solution, cities_api, 'Found cities')
 	cities.map(function(val) {
